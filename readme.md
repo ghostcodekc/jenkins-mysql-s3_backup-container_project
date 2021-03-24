@@ -24,8 +24,30 @@ docker-compose up -d
 docker container exec -it remote_host bash
 ```
 
+## Connecting to the mysql db via remote_host container
+```
+mysql -h db -u root -p
+```
+
+## Commands on the remote_host container that might be helpful
+This will show you the contents of your S3 backup bucket. Helpful for the restore db script.
+```
+aws s3 ls {BUCKET NAME}
+```
+
+
+## Restore mysql database
+```
+./db_restore.sh db {DB_PASSWORD} testdb {BUCKET} {BACKUP_FILENAME including `.sql`} (db-032421-162613.sql)
+```
+example:
+> /var/run/db_backup/db_restore.sh db {DB_PASSWORD} testdb andrewmgrube-jenkins-mysql-backup db-032421-162613.sql
+
 ## Backup Script Command
 In order to back up your mysql db to S3 you will need to run the following command after accessing the remote_host.
 ```
 /var/run/db_backup/script.sh db {DB_PASSWORD} {DB_NAME} {S3_BACKUP_BUCKET}
 ```
+
+example:
+> /var/run/db_backup/script.sh db {DB_PASSWORD} testdb andrewmgrube-jenkins-mysql-backup
