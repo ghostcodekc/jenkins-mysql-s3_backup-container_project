@@ -18,8 +18,14 @@ docker-compose build
 docker-compose up -d
 ```
 
+## Accessing the remote_host container
+
+```
+docker container exec -it remote_host bash
+```
+
 ## Backup Script Command
-In order to back up your mysql db to S3 you will need to run the following command after accessing the remote-host via SSH.
+In order to back up your mysql db to S3 you will need to run the following command after accessing the remote_host.
 ```
 /var/run/db_backup/script.sh db {DB_PASSWORD} {DB_NAME} {S3_BACKUP_BUCKET}
 ```
