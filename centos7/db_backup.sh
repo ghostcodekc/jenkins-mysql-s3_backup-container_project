@@ -1,5 +1,5 @@
-#!/bin/bash
-# Bash script written by Andrew Grube - andrewmgrube@gmail.com
+#/bin/bash
+
 DATE=$(date +%m%d%y-%H%M%S)
 BACKUP_NAME=db-$DATE.sql
 
@@ -10,5 +10,5 @@ BUCKET_NAME=$4
 
 mysqldump -u root -h $DB_HOST -p$DB_PASSWORD $DB_NAME > /var/run/db_backup/$BACKUP_NAME && \
 echo "Uploading db backup" && \
-aws s3 cp /var/run/db_backup/$BACKUP_NAME s3://$BUCKET_NAME/$BACKUP_NAME
-rm /var/run/db_backup/$BACKUP_NAME
+aws s3 cp /var/run/db/$BACKUP_NAME s3://$BUCKET_NAME/$BACKUP_NAME
+rm /var/run/db/$BACKUP_NAME

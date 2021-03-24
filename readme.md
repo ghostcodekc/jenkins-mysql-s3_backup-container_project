@@ -38,16 +38,16 @@ aws s3 ls {BUCKET NAME}
 
 ## Restore mysql database
 ```
-./db_restore.sh db {DB_PASSWORD} testdb {BUCKET} {BACKUP_FILENAME including `.sql`} (db-032421-162613.sql)
+/var/run/db/db_restore.sh db {DB_PASSWORD} testdb {BUCKET} {BACKUP_FILENAME including `.sql`}
 ```
 example:
-> /var/run/db_backup/db_restore.sh db {DB_PASSWORD} testdb andrewmgrube-jenkins-mysql-backup db-032421-162613.sql
+> /var/run/db/db_restore.sh db {DB_PASSWORD} testdb andrewmgrube-jenkins-mysql-backup db-032421-163042.sql
 
 ## Backup Script Command
 In order to back up your mysql db to S3 you will need to run the following command after accessing the remote_host.
 ```
-/var/run/db_backup/script.sh db {DB_PASSWORD} {DB_NAME} {S3_BACKUP_BUCKET}
+/var/run/db/db_backup.sh db {DB_PASSWORD} {DB_NAME} {S3_BACKUP_BUCKET}
 ```
 
 example:
-> /var/run/db_backup/script.sh db {DB_PASSWORD} testdb andrewmgrube-jenkins-mysql-backup
+> /var/run/db/db_backup.sh db {DB_PASSWORD} testdb andrewmgrube-jenkins-mysql-backup
