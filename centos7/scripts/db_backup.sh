@@ -8,7 +8,8 @@ DB_PASSWORD=$2
 DB_NAME=$3
 BUCKET_NAME=$4
 
-mysqldump -u root -h $DB_HOST -p$DB_PASSWORD $DB_NAME > /var/run/db_backup/$BACKUP_NAME && \
+mysqldump --column-statistics=0 -u root -h $DB_HOST -p$DB_PASSWORD $DB_NAME > /var/run/db/$BACKUP_NAME && \
 echo "Uploading db backup" && \
 aws s3 cp /var/run/db/$BACKUP_NAME s3://$BUCKET_NAME/$BACKUP_NAME
+
 rm /var/run/db/$BACKUP_NAME
