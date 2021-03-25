@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos
 
 RUN yum -y install openssh-server
 
@@ -17,12 +17,12 @@ RUN chown remote_user:remote_user -R /home/remote_user/.ssh/ && \
     chmod +x /var/run/db/db_backup.sh && \
     chmod +x /var/run/db/db_restore.sh
 
-RUN /usr/sbin/sshd-keygen
+RUN ssh-keygen -A
 
-RUN yum -y install mysql nano
+RUN yum -y install mysql nano python38
 
-RUN curl -O https://bootstrap.pypa.io/pip/2.7/get-pip.py && \
-    python get-pip.py && \
+RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" && \
+    python3 get-pip.py && \
     pip install awscli --upgrade
 
 CMD /usr/sbin/sshd -D
