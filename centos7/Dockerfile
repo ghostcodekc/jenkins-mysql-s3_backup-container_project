@@ -12,13 +12,10 @@ RUN useradd remote_user && \
 COPY remote_user_key.pub /home/remote_user/.ssh/authorized_keys
 
 RUN chown remote_user:remote_user -R /home/remote_user/.ssh/ && \
-    chmod 600 /home/remote_user/.ssh/authorized_keys
-
-RUN ssh-keygen -A
-
-RUN yum -y install mysql nano python38
-
-RUN curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" && \
+    chmod 600 /home/remote_user/.ssh/authorized_keys && \
+    ssh-keygen -A && \
+    yum -y install mysql nano python38 && \
+    curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" && \
     python3 get-pip.py && \
     pip install awscli --upgrade 
 
