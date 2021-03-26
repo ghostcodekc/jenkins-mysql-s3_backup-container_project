@@ -5,6 +5,7 @@
   - When asked to enter the file in which to save the key enter: `{Github Repo}\centos7\remote_user_key`
     - I chose to name mine "remote_user_key" because the Dockerfile for our remote-host creates a user called "remote_user"
     - The default `.gitignore` in this repo will not commit `centos7/remote_user_key*`
+- Copy the `remote_user_key` to the jenkins_ansible\config folder.
 - There are 2 example environment files. Remove the "example" out of the file name and edit the files with your correct AWS information.
   - The default `.gitignore` in this repo will not commit `config/.env` or `config/db-variables.env`
 
