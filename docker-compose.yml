@@ -19,6 +19,7 @@ services:
       context: centos7
     volumes:
       - ./centos7/scripts/:/var/run/db/
+      - ./centos7/database/:/var/tmp
     networks:
       - net
     env_file:
@@ -32,7 +33,6 @@ services:
       - "3306:3306"
     volumes:
       - ./database/data:/var/lib/mysql
-      - ./database/config:/var/tmp
     networks:
       - net
 networks:

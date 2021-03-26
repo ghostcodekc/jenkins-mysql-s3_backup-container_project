@@ -9,7 +9,7 @@
 - There are 2 example environment files. Remove the "example" out of the file name and edit the files with your correct AWS information.
   - The default `.gitignore` in this repo will not commit `config/.env` or `config/db-variables.env`
 
-## Build the 'remote-host' image
+## Build the images:
 ```
 docker-compose build
 ```
@@ -30,12 +30,15 @@ docker container exec -it remote_host bash
 mysql -h db -u root -p
 ```
 
+Load the mysql 'people' data with a randomized data set that I created:
+```
+mysql -h db -u root -p people < /var/tmp/database.sql
+```
 ## Commands on the remote_host container that might be helpful
 This will show you the contents of your S3 backup bucket. Helpful for the restore db script.
 ```
 aws s3 ls {BUCKET NAME}
 ```
-
 
 ## Restore mysql database
 ```
