@@ -25,6 +25,6 @@ pyenv
 Vagrantfile
 config/*
 jenkins_home/
-db_data/
+database/data
 centos7/remote_user_key*
 jenkins_ansible/config/remote_user_key
