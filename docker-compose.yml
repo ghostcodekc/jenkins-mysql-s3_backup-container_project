@@ -1,6 +1,6 @@
 version: '3'
 services:
-  jenkins:
+  jenkins_ansible:
     container_name: jenkins_ansible
     image: jenkins_ansible
     build:
@@ -9,6 +9,7 @@ services:
       - "8080:8080"
     volumes:
       - ./jenkins_home:/var/jenkins_home
+      - ./jenkins_ansible/config:/var/jenkins_home/ansible
     networks:
       - net
   remote_host:
@@ -30,7 +31,7 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - "./db_data:/var/lib/mysql"
+      - ./db_data:/var/lib/mysql
     networks:
       - net
 networks:
